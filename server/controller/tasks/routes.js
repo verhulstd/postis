@@ -1,5 +1,5 @@
 const tasksRouter = require("express").Router();
-
+const { checkToken } = require('../helpers')
 const {
   handleGetTasksList,
   handlePostTask,
@@ -21,7 +21,7 @@ const {
   validateAssignTask
 } = require("./validations");
 
-tasksRouter.get("/", handleGetTasksList);
+tasksRouter.get("/", checkToken, handleGetTasksList);
 tasksRouter.get(
   "/fromcampaign/:id",
   validateTaskByCampaignId(),

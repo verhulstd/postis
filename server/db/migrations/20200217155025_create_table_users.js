@@ -1,4 +1,4 @@
-exports.up = function(knex) {
+exports.up = function (knex) {
   // this is the function that creates the table
   return knex.schema.createTable("users", tbl => {
     tbl.increments("id").primary();
@@ -7,9 +7,10 @@ exports.up = function(knex) {
     tbl.string("email", 100);
     tbl.timestamp("created").defaultTo(knex.fn.now());
     tbl.timestamp("updated").nullable();
+    tbl.string('password', 256);
   });
 };
-exports.down = function(knex) {
+exports.down = function (knex) {
   // this is the function to rollback
   return knex.schema.dropTableIfExists("users");
 };
